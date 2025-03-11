@@ -9,7 +9,7 @@ const Navbar = () => {
                       <a href="#" className="scroll-smooth">
                         <img
                         className="md:w-[30%] w-[20%]"
-                        src='src\assets\images\logos\logo.png'
+                        src='public\images\logos\logo.png'
                         />
                       </a>
                     </div>

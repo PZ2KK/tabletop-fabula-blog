@@ -19,7 +19,7 @@ function HeroSection() {
                 <a href="https://www.drivethrurpg.com/en/product/410108/fabula-ultima-ttjrpg" target="_blank" className="block w-full">
                     <div className="mx-auto w-[70%] hover:scale-110 hover:brightness-120 transform transition-all duration-300">
                         <img className="rounded-3xl overflow-hidden cursor-pointer w-full"
-                                src="src\assets\images\banners\bookcover.jpg"
+                                src="public\images\banners\bookcover.jpg"
                                 alt="Fabula Ultima Volume 1 Bookcover"
                             /> 
                     </div>
