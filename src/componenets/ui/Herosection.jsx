@@ -9,16 +9,20 @@
                     initial={{ x: -100, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 1, ease: "easeOut",}}
-                    className="md:w-1/3 md:text-right md:items-end w-full flex flex-col items-center mb-6"
-                >
+                    className="md:w-1/3 md:text-right md:items-end w-full flex flex-col items-center mb-6">
                     <h1 className="md:text-5xl text-4xl font-bold mb-6">
                         This is your <span className="text-[#02695A] md:text-7xl">w</span>orld, 
                         <br />
                         this is your story 
                     </h1>
+                    <motion.div 
+                    initial={{ x: -100, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}>
                     <p className="md:text-2xl text-gray-600 text-md">
                         Made your choice and fight for what you believe for.
                     </p>
+                    </motion.div>
                 </motion.div>
 
                 {/* Middle box */}
@@ -26,7 +30,7 @@
                     <a href="https://www.drivethrurpg.com/en/product/410108/fabula-ultima-ttjrpg" target="_blank" className="block w-full">
                         <div className="mx-auto w-[70%] hover:scale-110 hover:brightness-120 transform transition-all duration-300">
                             <img className="rounded-3xl overflow-hidden cursor-pointer w-full"
-                                    src="public\images\banners\bookcover.jpg"
+                                    src="/images/banners/bookcover.jpg"
                                     alt="Fabula Ultima Volume 1 Bookcover"
                                 /> 
                         </div>
@@ -37,7 +41,7 @@
                 <motion.div 
                     initial={{ y: 100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 1.5, ease: "easeOut", delay: 0.5  }}
+                    transition={{ duration: 1.5, ease: "easeOut", delay: 1  }}
                     className="md:w-1/3 w-full flex flex-col items-start p-6 rounded-lg">
                     <h2 className="text-2xl font-semibold mb-6">
                         FABULA ULTIMA
