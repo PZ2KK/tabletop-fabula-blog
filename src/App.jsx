@@ -1,7 +1,7 @@
 import './App.css';
 import "tailwindcss";
-import Navbar from './componenets/ui/Navbar';
-import HeroSection from './componenets/ui/Herosection';
+import Navbar from './components/ui/Navbar';
+import HeroSection from './components/ui/Herosection';
 
 function App() {
   return (
