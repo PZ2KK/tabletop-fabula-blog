@@ -1,7 +1,8 @@
 import './App.css';
 import "tailwindcss";
-import Navbar from './componenets/ui/Navbar';
-import HeroSection from './componenets/ui/Herosection';
+import {Navbar, HeroSection, Footer} from './components/ui/LandingPage';
+import ArticleSection from './components/ui/ArticleSection';
+
 
 function App() {
   return (
@@ -9,6 +10,8 @@ function App() {
       <div className="min-h-screen cabin-font">
         <Navbar />
         <HeroSection />
+        <ArticleSection />
+        <Footer />
       </div>
     </>
   );
