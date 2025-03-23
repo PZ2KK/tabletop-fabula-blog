@@ -11,7 +11,7 @@ import { Search } from "lucide-react";
 import BlogCard from "./BlogCard";
 import { blogPosts } from "@/data/blogpost";
 
-const ArticleSection = ({ title = "Latest Articles" }) => {
+const ArticleSection = ( ) => {
   const [category, setCategory] = useState("Highlight");
   const categories = ["Highlight", "Book", "Inspiration", "General"];
 
@@ -19,24 +19,24 @@ const ArticleSection = ({ title = "Latest Articles" }) => {
     <>
       {/* ArticleSection */}
       <div className="md:mx-0 md:px-[140px] md:py-20 p-10 pt-0 w-full mx-auto">
-          <h2 className="md:text-4xl md:mb-6 mb-4 text-2xl font-bold">
-            {title}
+          <h2 className="md:text-4xl md:mb-6 text-2xl mb-4 font-bold">
+          Latest Articles
           </h2>
 
         {/* Big Box */}
-        <div className="flex flex-col items-start md:flex-row md:justify-between md:items-center bg-gray-100 rounded-lg p-4 gap-4">
+        <div className="md:flex-row md:justify-between md:items-center flex flex-col items-start bg-gray-100 rounded-lg p-4 gap-4">
           
             {/* Mobile Selection */}
-            <div className="w-full md:w-auto md:hidden">
+            <div className="md:w-auto md:hidden w-full">
               <p className="text-gray-600 mb-2">Category</p>
               <Select value={category} onValueChange={setCategory}>
-                <SelectTrigger className="bg-white w-full md:w-auto">
+                <SelectTrigger className="bg-white w-full md:w-auto cursor-pointer">
                   <SelectValue placeholder="Select category" />
                 </SelectTrigger>
                 <SelectContent>
-                  {categories.map((book) => (
-                    <SelectItem key={book} value={book}>
-                      {book}
+                  {categories.map((target) => (
+                    <SelectItem key={target} value={target}>
+                      {target}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -45,13 +45,13 @@ const ArticleSection = ({ title = "Latest Articles" }) => {
 
             {/* Desktop Selection */}
             <div className="hidden md:flex gap-2">
-              {categories.map((book) => (
+              {categories.map((target) => (
                 <button
-                  key={book}
-                  className={`py-2 px-4 rounded-md transition-all ease-in-out duration-300 ${category === book ? "bg-gray-300 shadow-sm" : "bg-transparent"}`}
-                  onClick={() => setCategory(book)}
+                  key={target}
+                  className={`py-2 px-4 rounded-md cursor-pointer transition-all ease-in-out duration-300 ${category === target ? "bg-gray-300 shadow-sm" : "bg-transparent"}`}
+                  onClick={() => setCategory(target)}
                 >
-                  {book}
+                  {target}
                 </button>
               
               ))}
@@ -72,6 +72,7 @@ const ArticleSection = ({ title = "Latest Articles" }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               {blogPosts.map((post) => (
                 <BlogCard
+                  key={post.id}
                   image={post.image}
                   category={post.category}
                   title={post.title}
