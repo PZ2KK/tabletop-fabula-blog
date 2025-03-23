@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Linkedin, Github, Globe } from "lucide-react";
+import AuthButton from "./AuthButton";
 
 export const Navbar = () => {
         return (
@@ -25,30 +26,22 @@ export const Navbar = () => {
                         </label>
                   
                         {/*mobile navbar*/}
-                        <ul className="hidden peer-checked:flex w-full flex-col items-center absolute bg-white top-13 left-0 transition ease-in-out duration-300 rounded-lg shadow-lg z-10">
-                          <li className="w-full">
-                            <button href="" className="text-black bg-white hover:bg-gray-200 font-bold p-4 w-full cursor-pointer">
-                              Log in
-                            </button>
+                        <ul className="hidden peer-checked:flex gap-3 py-6 w-full flex-col items-center absolute bg-white shadow-2xl top-12 left-0 z-10 transition ease-in-out duration-300">
+                          <li className="w-full px-3">
+                            <AuthButton text="Log in" type="login"/>
                           </li>
-                          <li className="w-full">
-                            <button href="" className="text-white bg-[#01473C] font-bold p-4 cursor-pointer w-full rounded-b-lg hover:bg-[#69C5C0] transition duration-300">
-                              Sign up
-                            </button>
+                          <li className="w-full px-3">
+                            <AuthButton text="Sign up" type="signup"/>
                           </li>
                         </ul>
                   
                         {/* desktop navbar */}
                         <ul className="hidden md:flex items-center text-[16px] font-semibold md:gap-[10px] gap-[16px]">
                           <li>
-                            <button href="" className="text-black bg-white font-bold py-[12px] px-[40px] cursor-pointer w-full rounded-full border border-[#01473C] hover:text-white hover:bg-[#02695A] transition duration-300">
-                              Log in
-                            </button>
+                            <AuthButton text="Log in" type="login"/>
                           </li>
                           <li>
-                            <button href="" className="text-white bg-[#02695A] font-bold py-[12px] px-[40px] cursor-pointer w-full rounded-full  hover:bg-[#69C5C0] transition duration-300">
-                              Sign up
-                            </button>
+                            <AuthButton text="Sign up" type="signup"/>
                           </li>
                         </ul>
                   </div>
