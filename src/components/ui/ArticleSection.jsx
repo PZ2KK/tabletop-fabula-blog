@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,} from "react";
 import axios from "axios";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -20,10 +20,10 @@ const ArticleSection = ( ) => {
   }, [category, page])
 
   const getPost = async() => {
+    setPosts([]);
+    setLoading(true);
+    setError(false);
     try {
-      setLoading(true);
-      setPosts([]);
-      setError(false);
       const response = await axios.get("https://blog-post-project-api.vercel.app/posts", {
         params: {
           category: category === "Highlight" ? undefined : category,
@@ -98,9 +98,18 @@ const ArticleSection = ( ) => {
         </div>
               
             {/* Article */}
+              {isLoading && 
+                <div className="flex flex-col items-center text-xl p-10">
+                  <div className="spinner mb-5"></div>
+                  <p>Loading articles...</p>
+                </div>
+              }
+              {isError && 
+                <div className="flex flex-col items-center text-xl text-red-500">
+                  <p>Failed to load articles. Please try again.</p>
+                </div>
+              }
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-              {isLoading && <p className="text-xl">Loading articles...</p>}
-              {isError && <p className="text-red-500">Failed to load articles. Please try again.</p>}
               {posts.map((post) => (
                 <BlogCard
                   key={post.id}
@@ -118,7 +127,10 @@ const ArticleSection = ( ) => {
             {/* Pagination */}
               <div className="flex justify-center gap-4 mt-6">
                 <button
-                  onClick={() => handlePagination(page > 1 ? page - 1 : page, )}
+                  onClick={() => {
+                    handlePagination(page > 1 ? page - 1 : page);
+                    scrollToArticle();
+                  }}
                   disabled={page === 1}
                   className="py-2 px-4 bg-gray-300 rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
@@ -128,7 +140,10 @@ const ArticleSection = ( ) => {
                 <span className="py-2 px-4">Page <span className="font-bold text-lg">{page}</span> </span>
 
                 <button
-                  onClick={() => handlePagination(page != pageLimit ? page + 1 : page, )}
+                  onClick={() => {
+                    handlePagination(page != pageLimit ? page + 1 : page);
+                    scrollToArticle();
+                  }}
                   disabled={page === pageLimit}
                   className="py-2 px-4 bg-gray-300 rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
