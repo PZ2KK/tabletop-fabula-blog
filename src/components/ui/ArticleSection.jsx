@@ -1,4 +1,4 @@
-import { useState, useEffect,} from "react";
+import { useState, useEffect, useRef} from "react";
 import axios from "axios";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -8,12 +8,24 @@ import BlogCard from "./BlogCard";
 const ArticleSection = ( ) => {
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
+
   const [posts, setPosts] = useState([]);
+
+  const [limit, setLimit] = useState(6);
   const [page, setPage] = useState(1);
   const [pageLimit, setPageLimit] = useState(1)
-  const [limit, setLimit] = useState(6);
+
   const [category, setCategory] = useState("Highlight");
   const categories = ["Highlight", "Book", "Inspiration", "General"];
+
+  const articleRef = useRef(null);
+
+  const scrollToArticle  = () => {
+    articleRef.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
+  };
 
   useEffect(() => {
     getPost()
@@ -41,15 +53,24 @@ const ArticleSection = ( ) => {
     }
   };
 
-  const handlePagination = (newPage) => {
-    setPage(newPage);
-  };
+  const paginationButton = (label, page, when) => (
+    <button
+      onClick={() => {
+        scrollToArticle();
+        setPage(page);
+      }}
+      disabled={when}
+      className="py-2 px-4 bg-gray-300 rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      {label}
+    </button>
+  );
 
   return (
     <>
       {/* ArticleSection */}
       <div className="md:mx-0 md:px-[140px] md:py-20 p-10 pt-0 w-full mx-auto">
-          <h2 className="md:text-4xl md:mb-6 text-2xl mb-4 font-bold">
+          <h2 className="md:text-4xl md:mb-6 text-2xl mb-4 font-bold" ref={articleRef}>
           Latest Articles
           </h2>
 
@@ -59,7 +80,12 @@ const ArticleSection = ( ) => {
             {/* Mobile Selection */}
             <div className="md:w-auto md:hidden w-full">
               <p className="text-gray-600 mb-2">Category</p>
-              <Select value={category} onValueChange={setCategory}>
+              <Select 
+                value={category}  
+                onValueChange={(value) => {
+                  setCategory(value);
+                  setPage(1);
+                }}>
                 <SelectTrigger className="bg-white w-full md:w-auto cursor-pointer">
                   <SelectValue placeholder="Select category" />
                 </SelectTrigger>
@@ -79,7 +105,9 @@ const ArticleSection = ( ) => {
                 <button
                   key={targetCategory}
                   className={`py-2 px-4 rounded-md cursor-pointer transition-all ease-in-out duration-300 ${category === targetCategory ? "bg-gray-300 shadow-sm" : "bg-transparent"}`}
-                  onClick={() => setCategory(targetCategory)}
+                  onClick={() => {
+                    setCategory(targetCategory)
+                    setPage(1)}}
                 >
                   {targetCategory}
                 </button>
@@ -87,14 +115,14 @@ const ArticleSection = ( ) => {
             </div>
 
             {/* Search Bar */}
-            <form className="relative w-full md:w-64">
+            <div className="relative w-full md:w-64">
               <Input
                 placeholder="Search"
                 className="bg-white px-4"
               />
             {/* Search Icon */}
               <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-            </form>
+            </div>
         </div>
               
             {/* Article */}
@@ -125,32 +153,18 @@ const ArticleSection = ( ) => {
             </div>
 
             {/* Pagination */}
-              <div className="flex justify-center gap-4 mt-6">
-                <button
-                  onClick={() => {
-                    handlePagination(page > 1 ? page - 1 : page);
-                    scrollToArticle();
-                  }}
-                  disabled={page === 1}
-                  className="py-2 px-4 bg-gray-300 rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  Previous
-                </button>
-
-                <span className="py-2 px-4">Page <span className="font-bold text-lg">{page}</span> </span>
-
-                <button
-                  onClick={() => {
-                    handlePagination(page != pageLimit ? page + 1 : page);
-                    scrollToArticle();
-                  }}
-                  disabled={page === pageLimit}
-                  className="py-2 px-4 bg-gray-300 rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  Next
-                </button>
+              <div className="flex justify-center mt-6 md:gap-4 gap-2 md:text-lg text-xs">
+                {paginationButton('First', 1, page === 1)}
+                {paginationButton('Previous', page > 1 ? page - 1 : page, page === 1)}
+                  <span className="flex items-center px-2 md:text-lg text-xs">
+                  Page 
+                  <span className="font-bold ml-2">{page}</span> 
+                </span>
+                {paginationButton('Next', page !== pageLimit ? page + 1 : page, page === pageLimit)}
+                {paginationButton('Last', pageLimit, page === pageLimit)}
               </div>
-      </div>
+
+        </div>
     </>
   );
 };
