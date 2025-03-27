@@ -21,7 +21,7 @@ export const Navbar = () => {
                         <input type="checkbox" id="menu-toggle" className="hidden peer"/>
                         <label for="menu-toggle" className="md:hidden text-[#1A1A2C] hover:text-[#1374F6] cursor-pointer">
                           <svg className="w-7 h-7" fill="none" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-width="2" d="M4 4h20 M4 12h20 M4 20h20"></path>
+                            <path strokeLinecap="round" strokeWidth="2" d="M4 4h20 M4 12h20 M4 20h20"></path>
                           </svg>
                         </label>
                   
@@ -49,7 +49,7 @@ export const Navbar = () => {
         );
     };
     
-export  function HeroSection() {
+export function HeroSection() {
         return (
             <div className="md:flex-row md:mx-[140px] md:pt-40 md:p-0 flex flex-col items-center justify-between pt-25 p-6">
 
