@@ -1,5 +1,7 @@
-import {Navbar, HeroSection, Footer} from '@/components/ui/MainSection';
+import Navbar from '@/components/ui/Navbar';
+import HeroSection from '@/components/ui/HeroSection';
 import ArticleSection from '@/components/ui/ArticleSection';
+import Footer from '@/components/ui/Footer';
 
 const LandingPage = () => {
   return (

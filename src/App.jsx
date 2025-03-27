@@ -1,7 +1,6 @@
 import './App.css';
 import "tailwindcss";
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
-import {Navbar, HeroSection, Footer} from './components/ui/MainSection';
+import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 
 
