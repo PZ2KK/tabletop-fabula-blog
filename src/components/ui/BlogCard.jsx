@@ -10,11 +10,11 @@ function BlogCard({image, category, title, description, author, date, authorImag
 
     return (
       <div className="flex flex-col gap-4">
-        <a href="#" className="relative md:h-[360px] h-[212px]">
+        <a href="#" className="relative md:h-90 h-50">
           <img 
             className="w-full h-full object-cover rounded-md" 
             src={image}
-            alt={description}/>
+            alt={title}/>
         </a>
         <div className="flex flex-col">
           <div className="flex">

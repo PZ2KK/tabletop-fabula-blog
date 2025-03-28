@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef} from "react";
 import axios from "axios";
 import { Search } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
+import { Input } from "@/components/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/select";
 import BlogCard from "./BlogCard";
 
 const ArticleSection = ( ) => {
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   const [posts, setPosts] = useState([]);
 
@@ -20,18 +21,19 @@ const ArticleSection = ( ) => {
 
   const articleRef = useRef(null);
 
-  const scrollToArticle  = () => {
-    articleRef.current.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-    });
-  };
-
   useEffect(() => {
-    getPost()
+    fetchData()
   }, [category, page])
 
-  const getPost = async() => {
+  useEffect(() => {
+    if (isFirstLoad) {
+      setIsFirstLoad(false);
+      return;
+    }
+    scrollToArticle();
+  }, [page]);
+
+  const fetchData = async() => {
     setPosts([]);
     setLoading(true);
     setError(false);
@@ -53,10 +55,16 @@ const ArticleSection = ( ) => {
     }
   };
 
+  const scrollToArticle  = () => {
+    articleRef.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
+  };
+
   const paginationButton = (label, page, when) => (
     <button
       onClick={() => {
-        scrollToArticle();
         setPage(page);
       }}
       disabled={when}
@@ -118,7 +126,7 @@ const ArticleSection = ( ) => {
             <div className="relative w-full md:w-64">
               <Input
                 placeholder="Search"
-                className="bg-white px-4"
+                className="bg-white px-4 focus:outline-none focus:ring-0"
               />
             {/* Search Icon */}
               <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
