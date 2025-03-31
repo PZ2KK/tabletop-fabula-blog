@@ -38,7 +38,7 @@ const BookSlider = () => {
             {/* Book Display */}
            
                 <div className="h-full w-full flex justify-center relative">
-                    <a href={books[currentIndex].link} target="_blank">
+                    <a href={books[currentIndex].link} target="_blank" rel="noopener noreferrer">
                         <div className="flex justify-center md:w-100 md:hover:scale-103 hover:brightness-110 md:p-0 w-auto transform transition-all duration-300">
                             <img className="rounded-3xl overflow-hidden cursor-pointer w-full" src={books[currentIndex].image} alt={books[currentIndex].title} />
                         </div>

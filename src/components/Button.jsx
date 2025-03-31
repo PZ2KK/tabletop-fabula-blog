@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-const Button = ({ text, type, onClick }) => {
+const Button = ({ text, style, onClick }) => {
   const baseStyle =
     "font-bold p-2 px-8 w-full rounded-full cursor-pointer transition duration-300";
   const styles = {
@@ -9,7 +9,7 @@ const Button = ({ text, type, onClick }) => {
   }
   return (
     <button 
-      className={cn(baseStyle, styles[type])} 
+      className={cn(baseStyle, styles[style])} 
       onClick={onClick}
     >
       {text}

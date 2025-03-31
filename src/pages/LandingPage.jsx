@@ -6,7 +6,7 @@ import Footer from '@/components/ui/Footer';
 const LandingPage = () => {
   return (
         <>
-            <div className="min-h-screen cabin-font">
+            <div className="min-h-screen flex flex-col cabin-font">
                 <Navbar />
                 <HeroSection />
                 <ArticleSection />

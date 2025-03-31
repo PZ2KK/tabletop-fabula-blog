@@ -7,7 +7,7 @@ const Navbar = () => {
     
                         {/* logo */}
                         <div className="relative">
-                          <a href="#" className="scroll-smooth">
+                          <a href="/" className="scroll-smooth" rel="noopener noreferrer">
                             <img
                             className="md:w-[30%] w-[20%]"
                             src='/images/logos/logo.png'
@@ -26,20 +26,20 @@ const Navbar = () => {
                         {/*mobile navbar*/}
                         <ul className="hidden peer-checked:flex gap-3 py-6 w-full flex-col items-center absolute bg-white shadow-2xl top-12 left-0 z-10 transition ease-in-out duration-300">
                           <li className="w-full px-3">
-                            <Button text="Log in" type="white"/>
+                            <Button text="Log in" style="white"/>
                           </li>
                           <li className="w-full px-3">
-                            <Button text="Sign up" type="black"/>
+                            <Button text="Sign up" style="black"/>
                           </li>
                         </ul>
                   
                         {/* desktop navbar */}
                         <ul className="hidden md:flex items-center text-[16px] font-semibold md:gap-[10px] gap-[16px]">
                           <li>
-                            <Button text="Log in" type="white"/>
+                            <Button text="Log in" style="white"/>
                           </li>
                           <li>
-                            <Button text="Sign up" type="black"/>
+                            <Button text="Sign up" style="black"/>
                           </li>
                         </ul>
                   </div>

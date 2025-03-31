@@ -16,7 +16,7 @@ const NoMatchPage = () => {
                     <h1 className="text-lg font-black">Page Not Found</h1>
                     <Button 
                       text="Go To Homepage" 
-                      type="black"
+                      style="black"
                       onClick={() => navigate("/")}
                     />
                   </div>

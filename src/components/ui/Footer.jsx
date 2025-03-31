@@ -18,7 +18,7 @@ const Footer = () => {
           </a>
         </div>
 
-        <a href="/" className="underline hover:text-gray-500 font-bold">
+        <a href="/" className="underline hover:text-gray-500 font-bold" rel="noopener noreferrer">
           <h1>Home page</h1>
         </a>
       </footer>
