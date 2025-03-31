@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import BookSlider from "../BookSlider";
 
 function HeroSection() {
         return (
@@ -29,16 +30,7 @@ function HeroSection() {
                 </motion.div>
 
                 {/* Middle box */}
-                <div className="flex justify-center relative">
-                    <a href="https://www.drivethrurpg.com/en/product/410108/fabula-ultima-ttjrpg" target="_blank" className="block w-full">
-                        <div className="mx-auto w-[70%] md:hover:scale-110 hover:scale-105 hover:brightness-120 transform transition-all duration-300">
-                            <img className="rounded-3xl overflow-hidden cursor-pointer w-full"
-                                    src="/images/banners/bookcover1.jpg"
-                                    alt="Fabula Ultima Volume 1 Bookcover"
-                                /> 
-                        </div>
-                    </a>
-                </div>
+                <BookSlider/>
 
                 {/* Right box */}
                 <motion.div 

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Search } from "lucide-react";
 import { Input } from "@/components/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/select";
-import BlogCard from "./BlogCard";
+import BlogCard from "../BlogCard";
 
 const ArticleSection = ( ) => {
   const [isLoading, setLoading] = useState(false);
@@ -42,7 +42,7 @@ const ArticleSection = ( ) => {
         params: {
           category: category === "Highlight" ? undefined : category,
           limit,
-          page,
+          page: page,
         }
       })
       setPosts(response.data.posts);
