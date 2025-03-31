@@ -1,18 +1,17 @@
 import './App.css';
 import "tailwindcss";
-import {Navbar, HeroSection, Footer} from './components/ui/LandingPage';
-import ArticleSection from './components/ui/ArticleSection';
+import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
 
 
 function App() {
   return (
     <>
-      <div className="min-h-screen cabin-font">
-        <Navbar />
-        <HeroSection />
-        <ArticleSection />
-        <Footer />
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage/>}/>
+        </Routes>
+      </Router>
     </>
   );
 };
