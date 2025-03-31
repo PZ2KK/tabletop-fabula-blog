@@ -4,7 +4,6 @@ import BookSlider from "../BookSlider";
 function HeroSection() {
         return (
             <div className="md:flex-row md:mx-[140px] md:pt-40 md:p-0 flex flex-col items-center justify-between pt-25 p-6">
-
                 {/* Left box */}
                 <motion.div 
                     initial={{ x: -100, opacity: 0 }}

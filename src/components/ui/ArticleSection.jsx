@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef} from "react";
 import axios from "axios";
+import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
 import { Input } from "@/components/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/select";
@@ -112,7 +113,7 @@ const ArticleSection = ( ) => {
               {categories.map((targetCategory) => (
                 <button
                   key={targetCategory}
-                  className={`py-2 px-4 rounded-md cursor-pointer transition-all ease-in-out duration-300 ${category === targetCategory ? "bg-gray-300 shadow-sm" : "bg-transparent"}`}
+                  className={cn("py-2 px-4 rounded-md cursor-pointer transition-all ease-in-out duration-300", category === targetCategory ? "bg-gray-300 shadow-sm" : "bg-transparent")}
                   onClick={() => {
                     setCategory(targetCategory)
                     setPage(1)}}
