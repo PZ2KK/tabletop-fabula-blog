@@ -1,13 +1,13 @@
-import AuthButton from "../AuthButton";
+import Button from "./ui/Button";
 
 const Navbar = () => {
         return (
-            <nav className="md:mx-0 md:px-[140px] md:py-[14px] fixed top-0 z-99 bg-white w-full shadow-md px-6 py-3">
+            <nav className="md:mx-0 md:px-[140px] md:py-[14px] fixed top-0 z-99 bg-white w-full shadow-md px-6 py-3 ">
                   <div className="w-full flex justify-between items-center">
     
                         {/* logo */}
                         <div className="relative">
-                          <a href="#" className="scroll-smooth">
+                          <a href="/" className="scroll-smooth" rel="noopener noreferrer">
                             <img
                             className="md:w-[30%] w-[20%]"
                             src='/images/logos/logo.png'
@@ -26,20 +26,20 @@ const Navbar = () => {
                         {/*mobile navbar*/}
                         <ul className="hidden peer-checked:flex gap-3 py-6 w-full flex-col items-center absolute bg-white shadow-2xl top-12 left-0 z-10 transition ease-in-out duration-300">
                           <li className="w-full px-3">
-                            <AuthButton text="Log in" type="login"/>
+                            <Button text="Log in" style="white"/>
                           </li>
                           <li className="w-full px-3">
-                            <AuthButton text="Sign up" type="signup"/>
+                            <Button text="Sign up" style="black"/>
                           </li>
                         </ul>
                   
                         {/* desktop navbar */}
                         <ul className="hidden md:flex items-center text-[16px] font-semibold md:gap-[10px] gap-[16px]">
                           <li>
-                            <AuthButton text="Log in" type="login"/>
+                            <Button text="Log in" style="white"/>
                           </li>
                           <li>
-                            <AuthButton text="Sign up" type="signup"/>
+                            <Button text="Sign up" style="black"/>
                           </li>
                         </ul>
                   </div>

@@ -10,7 +10,7 @@ function BlogCard({image, category, title, description, author, date, authorImag
 
     return (
       <div className="flex flex-col gap-4">
-        <a href="#" className="relative md:h-90 h-50">
+        <a href="#" className="relative md:h-90 h-50" rel="noopener noreferrer">
           <img 
             className="w-full h-full object-cover rounded-md" 
             src={image}
@@ -22,7 +22,7 @@ function BlogCard({image, category, title, description, author, date, authorImag
                 {category}
             </span>
           </div>
-          <a href="#" >
+          <a href="#" rel="noopener noreferrer">
             <h2 className="text-start font-bold text-xl mb-2 line-clamp-2 hover:underline">
             {title}
             </h2>

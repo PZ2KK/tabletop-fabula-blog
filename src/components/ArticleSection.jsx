@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef} from "react";
 import axios from "axios";
+import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
-import { Input } from "@/components/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/select";
-import BlogCard from "./BlogCard";
+import { Input } from "@/components/ui/Input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/Select";
+import BlogCard from "./ui/BlogCard";
 
 const ArticleSection = ( ) => {
   const [isLoading, setLoading] = useState(false);
@@ -42,7 +43,7 @@ const ArticleSection = ( ) => {
         params: {
           category: category === "Highlight" ? undefined : category,
           limit,
-          page,
+          page: page,
         }
       })
       setPosts(response.data.posts);
@@ -68,7 +69,7 @@ const ArticleSection = ( ) => {
         setPage(page);
       }}
       disabled={when}
-      className="py-2 px-4 bg-gray-300 rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+      className="py-2 px-4 bg-gray-300 hover:bg-gray-200 disabled:hover:bg-gray-300 rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
     >
       {label}
     </button>
@@ -112,7 +113,7 @@ const ArticleSection = ( ) => {
               {categories.map((targetCategory) => (
                 <button
                   key={targetCategory}
-                  className={`py-2 px-4 rounded-md cursor-pointer transition-all ease-in-out duration-300 ${category === targetCategory ? "bg-gray-300 shadow-sm" : "bg-transparent"}`}
+                  className={cn("py-2 px-4 rounded-md cursor-pointer transition-all ease-in-out duration-300", category === targetCategory ? "bg-gray-300 shadow-sm" : "bg-transparent")}
                   onClick={() => {
                     setCategory(targetCategory)
                     setPage(1)}}
