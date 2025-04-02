@@ -4,15 +4,6 @@ import { Link } from "react-router-dom";
 function BlogCard({id, image, category, title, description, author, date, authorImage}) {
     const [expandToggle, setExpandToggle] = useState(false);
 
-    const formatDate = new Date(date).toLocaleString("th-TH", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    });
-
     return (
       //Big Box
       <div className="flex flex-col gap-4">
@@ -61,7 +52,7 @@ function BlogCard({id, image, category, title, description, author, date, author
             </span>
             <span className="mx-2 text-gray-300">|</span>
             <span>
-                {formatDate}
+                {date}
             </span>
           </div>
         </div>

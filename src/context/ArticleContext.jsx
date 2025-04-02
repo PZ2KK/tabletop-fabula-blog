@@ -15,6 +15,17 @@ export const ArticleProvider = ({ children }) => {
     fetchData();
   }, [category, page]);
 
+  const formatDate = (date) => {
+    return new Date(date).toLocaleString("th-TH", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+  };
+
   const fetchData = async () => {
     setLoading(true);
     setError(false);
@@ -26,7 +37,13 @@ export const ArticleProvider = ({ children }) => {
           page,
         },
       });
-      setPosts(response.data.posts);
+
+      const formattedPosts = response.data.posts.map((post) => ({
+        ...post,
+        date: formatDate(post.date),
+      }));
+
+      setPosts(formattedPosts);
       setPageLimit(response.data.totalPages);
     } catch (error) {
       console.error(error);
@@ -36,8 +53,28 @@ export const ArticleProvider = ({ children }) => {
     }
   };
 
+  const fetchPostById = async (postId) => {
+    setLoading(true);
+    setError(false);
+    try {
+      const response = await axios.get("https://blog-post-project-api.vercel.app/posts", {
+        params: {
+            id: {postId}
+        },
+      });
+      return { ...response.data.posts, date: formatDate(response.data.posts.date) };
+    } catch (error) {
+      console.error(error);
+      setError(true);
+      return null;
+    } finally {
+        
+      setLoading(false);
+    }
+  };
+  
   return (
-    <ArticleContext.Provider value={{ posts, isLoading, isError, category, setCategory, page, setPage, pageLimit }}>
+    <ArticleContext.Provider value={{ posts, isLoading, isError, category, setCategory, page, setPage, pageLimit, fetchPostById }}>
       {children}
     </ArticleContext.Provider>
   );
