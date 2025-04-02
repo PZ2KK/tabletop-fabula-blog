@@ -10,7 +10,7 @@ import {Toaster} from 'sonner';
 function App() {
   return (
     <>
-      <Toaster richColors/>
+      <Toaster/>
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage/>}/>

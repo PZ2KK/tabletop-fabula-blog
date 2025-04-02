@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import BookSlider from "../BookSlider";
+import BookSlider from "./ui/BookSlider";
 
 function HeroSection() {
         return (

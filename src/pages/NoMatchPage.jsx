@@ -1,6 +1,6 @@
-import Navbar from '@/components/ui/Navbar';
-import Footer from '@/components/ui/Footer';
-import Button from '@/components/Button';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import Button from '@/components/ui/Button';
 import { useNavigate } from 'react-router-dom';
 import { HiOutlineExclamationCircle } from "react-icons/hi2";
 

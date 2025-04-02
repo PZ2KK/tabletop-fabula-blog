@@ -2,9 +2,9 @@ import { useState, useEffect, useRef} from "react";
 import axios from "axios";
 import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
-import { Input } from "@/components/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/select";
-import BlogCard from "../BlogCard";
+import { Input } from "@/components/ui/Input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/Select";
+import BlogCard from "./ui/BlogCard";
 
 const ArticleSection = ( ) => {
   const [isLoading, setLoading] = useState(false);
@@ -69,7 +69,7 @@ const ArticleSection = ( ) => {
         setPage(page);
       }}
       disabled={when}
-      className="py-2 px-4 bg-gray-300 rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+      className="py-2 px-4 bg-gray-300 hover:bg-gray-200 disabled:hover:bg-gray-300 rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
     >
       {label}
     </button>

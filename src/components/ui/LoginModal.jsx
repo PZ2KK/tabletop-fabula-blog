@@ -15,13 +15,13 @@ const LoginModal = ({ modalToggle, setModalToggle }) => {
                 </span>
                 <h2 className="md:text-4xl text-3xl text-center font-bold drop-shadow-lg">Create an account to continue</h2>
                 <div className="w-full md:px-30 px-18">
-                    <Button text="Create account" style="black"/>
+                    <Button text="Create account" style="black" onClick={() => navigate("")}/>
                 </div>
                 <div className="flex justify-between">
                     <p className="text-gray-500 drop-shadow-lg">Already have an account?
                         <span 
                             className="text-black underline hover: cursor-pointer ml-2"
-                            onClick={() => navigate("/")}
+                            onClick={() => navigate("")}
                         > 
                             Log in 
                         </span>

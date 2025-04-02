@@ -1,6 +1,6 @@
-import Navbar from '@/components/ui/Navbar';
-import Footer from '@/components/ui/Footer';
-import BlogPost from '@/components/ui/BlogPost';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import BlogPost from '@/components/BlogPost';
 
 
 const PostPage = () => {

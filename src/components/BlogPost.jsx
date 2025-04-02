@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Smile, Link as LinkIcon, Facebook, Twitter, Linkedin } from 'lucide-react';
-import Button from '../Button';
-import LoginModal from '../LoginModal';
-import { Toaster, toast } from 'sonner'
+import Button from './ui/Button';
+import LoginModal from './ui/LoginModal';
+import { toast } from 'sonner'
 import { cn } from '@/lib/utils';
 
 
@@ -37,7 +37,10 @@ const BlogPost = () => {
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
-    toast.success('Success! Link copied to clipboard')
+    toast.success("Copied!", {
+      richColors: true,
+      description: 'This article has been copied to your clipboard',
+    });
   };
 
   // Mocked blog post data
@@ -236,7 +239,7 @@ When I'm not writing, I spend time volunteering at my local animal shelter, help
         
         {/* Author Section */}
         <div className="md:w-1/3 ">
-          <div className="sticky top-36 bg-gray-50 rounded-xl p-6 z-100">
+          <div className="sticky top-36 bg-gray-50 rounded-xl p-6">
             <div className="flex items-center mb-4">
               <img 
                 src={post.author.avatar} 
