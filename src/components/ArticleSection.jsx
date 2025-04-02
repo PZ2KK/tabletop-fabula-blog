@@ -3,11 +3,12 @@ import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/Input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
-import BlogCard from "./ui/BlogCard";
+import ArticleCard from "./ui/ArticleCard";
 import { useArticles } from "@/context/ArticleContext";
+import LoadingWrapper from "./ui/LoadingWrapper";
 
 const ArticleSection = () => {
-  const { posts, isLoading, isError, category, setCategory, page, setPage, pageLimit } = useArticles();
+  const { posts, category, setCategory, page, setPage, pageLimit } = useArticles();
   const categories = ["Highlight", "Book", "Inspiration", "General"];
   const articleRef = useRef(null);
 
@@ -55,22 +56,13 @@ const ArticleSection = () => {
       </div>
 
       {/* Articles */}
-      {isLoading ? (
-        <div className="flex flex-col items-center text-xl p-10">
-          <div className="spinner mb-5"></div>
-          <p>Loading articles...</p>
-        </div>
-      ) : isError ? (
-        <div className="flex flex-col items-center text-xl text-red-500">
-          <p>Failed to load articles. Please try again.</p>
-        </div>
-      ) : (
+      <LoadingWrapper>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
           {posts.map((post) => (
-            <BlogCard key={post.id} {...post}/>
+            <ArticleCard key={post.id} {...post}/>
           ))}
         </div>
-      )}
+      </LoadingWrapper>
 
       {/* Pagination */}
       <div className="flex justify-center mt-6 md:gap-4 gap-2 md:text-lg text-xs">

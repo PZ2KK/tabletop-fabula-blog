@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import BlogPost from '@/components/BlogPost';
+import ArticlePost from '@/components/ArticlePost';
 import { useEffect } from "react";
 
 
@@ -13,7 +13,7 @@ const PostPage = () => {
         <>
             <div className="min-h-screen flex flex-col cabin-font">
                 <Navbar />
-                <BlogPost/>
+                <ArticlePost/>
                 <Footer />
             </div>  
         </>

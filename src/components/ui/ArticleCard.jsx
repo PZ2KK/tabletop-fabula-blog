@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function BlogCard({id, image, category, title, description, author, date, authorImage}) {
+function ArticleCard({id, image, category, title, description, author, date, authorImage}) {
     const [expandToggle, setExpandToggle] = useState(false);
 
     return (
@@ -60,5 +60,5 @@ function BlogCard({id, image, category, title, description, author, date, author
     );
    }
 
-export default BlogCard;
+export default ArticleCard;
    
