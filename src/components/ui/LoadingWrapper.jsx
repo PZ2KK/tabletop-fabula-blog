@@ -13,8 +13,9 @@ const LoadingWrapper = ({ children }) => {
 
   if (isError)
     return (
-      <div className="flex flex-col flex-grow items-center justify-center text-xl text-red-500 p-18">
-        <p>Failed to load articles. Please try again.</p>
+      <div className="flex flex-col flex-grow items-center justify-center text-center text-xl text-red-500 p-18">
+        <p>Failed to load articles.</p>
+        <p>Please try again.</p>
       </div>
     );
 

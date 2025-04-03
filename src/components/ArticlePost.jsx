@@ -17,11 +17,20 @@ const ArticlePost = () => {
   const [likesCount, setLikesCount] = useState(321);
   const [hasLiked, setHasLiked] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const loadPost = async() => {
-      const response = await fetchPostById(postId)
-      setPost(response[postId]);
-    };
+      try {
+      const response = await fetchPostById(postId);
+      if (!response || Object.keys(response).length === 0) {
+        navigate("*")
+      }
+      setPost(response);
+    } catch(error){
+      console.error(error)
+      
+    }}
     loadPost();
   }, []);
 

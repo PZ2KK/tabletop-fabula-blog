@@ -10,6 +10,7 @@ export const ArticleProvider = ({ children }) => {
   const [category, setCategory] = useState("Highlight");
   const [page, setPage] = useState(1);
   const [pageLimit, setPageLimit] = useState(1);
+  
 
   useEffect(() => {
     fetchData();
@@ -57,18 +58,13 @@ export const ArticleProvider = ({ children }) => {
     setLoading(true);
     setError(false);
     try {
-      const response = await axios.get("https://blog-post-project-api.vercel.app/posts", {
-        params: {
-            id: {postId}
-        },
-      });
-      return { ...response.data.posts, date: formatDate(response.data.posts.date) };
+      const response = await axios.get(`https://blog-post-project-api.vercel.app/posts/${postId}`);
+      return { ...response.data, date: formatDate(response.data.date) };
     } catch (error) {
       console.error(error);
       setError(true);
-      return null;
+      return [];
     } finally {
-        
       setLoading(false);
     }
   };
