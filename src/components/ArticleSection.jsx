@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import ArticleCard from "./ui/ArticleCard";
 import { useArticles } from "@/context/ArticleContext";
 import LoadingWrapper from "./ui/LoadingWrapper";
+import Pagination from "./ui/Pagination";
 
 const ArticleSection = () => {
   const { posts, category, setCategory, page, setPage, pageLimit } = useArticles();
@@ -77,18 +78,7 @@ const ArticleSection = () => {
       </LoadingWrapper>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-6 md:gap-4 gap-2 md:text-lg text-xs">
-        <PaginationButton text={"First"} onClick={() => setPage(1)} disabled={page === 1}/>
-        <PaginationButton text={"Previous"} onClick={() => setPage(page - 1)} disabled={page === 1}/>
-        <span className="flex items-center px-2 md:text-lg text-xs">Page <span className="font-bold ml-2">{page}</span></span>
-        <PaginationButton text={"Next"} onClick={() => setPage(page + 1)} disabled={page === pageLimit}/>
-        <PaginationButton text={"Last"} onClick={() => setPage(pageLimit)} disabled={page === pageLimit}/>
-        {/* <button onClick={() => setPage(1)} disabled={page === 1} className="py-2 px-4 bg-gray-300 hover:bg-gray-200 disabled:opacity-50 rounded-md">First</button>
-        <button onClick={() => setPage(page - 1)} disabled={page === 1} className="py-2 px-4 bg-gray-300 hover:bg-gray-200 disabled:opacity-50 rounded-md">Previous</button>
-        <span className="flex items-center px-2 md:text-lg text-xs">Page <span className="font-bold ml-2">{page}</span></span>
-        <button onClick={() => setPage(page + 1)} disabled={page === pageLimit} className="py-2 px-4 bg-gray-300 hover:bg-gray-200 disabled:opacity-50 rounded-md">Next</button>
-        <button onClick={() => setPage(pageLimit)} disabled={page === pageLimit} className="py-2 px-4 bg-gray-300 hover:bg-gray-200 disabled:opacity-50 rounded-md">Last</button> */}
-      </div>
+      <Pagination page={page} pageLimit={pageLimit} setPage={setPage} />
     </div>
   );
 };
