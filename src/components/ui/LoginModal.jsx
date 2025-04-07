@@ -13,7 +13,7 @@ const LoginModal = ({ modalToggle, setModalToggle }) => {
                 >
                     &times;
                 </span>
-                <h2 className="md:text-4xl text-3xl text-center font-bold drop-shadow-lg">Create an account to continue</h2>
+                <h2 className="md:text-4xl text-2xl text-center font-bold drop-shadow-lg">Create an account to continue</h2>
                 <div className="w-full md:px-30 px-18">
                     <Button text="Create account" style="black" onClick={() => navigate("")}/>
                 </div>
