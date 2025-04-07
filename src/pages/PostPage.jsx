@@ -3,7 +3,6 @@ import Footer from '@/components/Footer';
 import ArticlePost from '@/components/ArticlePost';
 import { useEffect } from "react";
 
-
 const PostPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
