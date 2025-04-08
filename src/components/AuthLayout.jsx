@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Button from "./ui/Button";
 import FormFields from "./ui/FormFields";
 import { FaCheck } from "react-icons/fa6";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from "sonner";
 
 const AuthLayout = () => {
@@ -28,6 +28,14 @@ const AuthLayout = () => {
     useEffect(()=>{
         setErrors({})
     }, [signUpToggle]);
+
+    useEffect(()=>{
+        if (location.pathname === "/login") {
+            setSignUpToggle(false);
+          } else {
+            setSignUpToggle(true);
+          }
+    }, [location.pathname])
 
     // when typing
     const handleChange = (e) => {
@@ -135,12 +143,7 @@ const AuthLayout = () => {
                                 <Button text="Sign up" style="black" type="submit"/>
                             </div>
                             <p className="flex justify-center text-gray-500 drop-shadow-lg pb-6">Already have an account?
-                                <span 
-                                    className="text-black underline hover: cursor-pointer ml-2"
-                                    onClick={() => {
-                                        setSignUpToggle(!signUpToggle); 
-                                        navigate("/signup");
-                                }}> 
+                                <span className="text-black underline hover: cursor-pointer ml-2" onClick={() => {navigate("/login");}}> 
                                     Log in
                                 </span>
                             </p> 
@@ -163,12 +166,7 @@ const AuthLayout = () => {
                                 <Button text="Log in" style="black" type="submit"/>
                             </div>
                             <p className="flex justify-center text-gray-500 drop-shadow-lg pb-6">Don't have any account?
-                                <span 
-                                    className="text-black underline hover: cursor-pointer ml-2"
-                                    onClick={() => {
-                                        setSignUpToggle(!signUpToggle); 
-                                        navigate("/signup");
-                                }}> 
+                                <span className="text-black underline hover: cursor-pointer ml-2" onClick={() => {navigate("/signup");}}> 
                                     Sign up
                                 </span>
                             </p> 
