@@ -7,6 +7,7 @@ import { toast } from 'sonner'
 import { cn } from '@/lib/utils';
 import { useArticles } from '@/context/ArticleContext';
 import LoadingWrapper from './ui/LoadingWrapper';
+import ReactMarkdown from 'react-markdown';
 
 const ArticlePost = () => {
   const { postId } = useParams();
@@ -65,7 +66,7 @@ const ArticlePost = () => {
 
   return (
     <LoadingWrapper>
-      <div className="flex flex-col md:px-[140px] mx-auto py-8 pt-36">
+      <div className="flex flex-col md:px-[140px] md:mx-60 mx-0 py-8 md:pt-36 pt-18 px-6">
         {/* Login Modal */}
         {modalToggle && <LoginModal modalToggle={modalToggle} setModalToggle={setModalToggle} />}
 
@@ -74,7 +75,7 @@ const ArticlePost = () => {
           <img 
             src={post.image}
             alt={post.title}
-            className="w-full h-200 object-cover"
+            className="w-full md:h-150 object-cover"
           />
         </div>
 
@@ -84,26 +85,42 @@ const ArticlePost = () => {
           <div className="md:w-2/3">
             {/* Category and Date */}
             <div className="mb-4">
-              <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium mr-2">{post.category}</span>
+              <span className="bg-green-200 rounded-full px-3 py-2 text-sm font-semibold text-green-600 mr-2">{post.category}</span>
               <span className="text-gray-500 text-sm">{post.date}</span>
             </div>
             
             {/* Title */}
-            <h1 className="text-3xl md:text-4xl font-bold mb-6">{post.title}</h1>
+            <h1 className="text-2xl md:text-4xl font-bold mb-6">{post.title}</h1>
             
             
             {/* Content */}
-            <div 
-              className="prose max-w-none mb-12"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            ></div>
+            <div className="markdown mb-6">
+               <ReactMarkdown>{post.content}</ReactMarkdown>
+            </div>
+            
+            {/* Author Section Mobile*/}
+            <div className="md:hidden grid mb-12">
+              <div className="sticky top-36 bg-gray-50 rounded-xl p-6">
+                <div className="flex items-center mb-4">
+                  <img 
+                    src={post.author} 
+                    alt={post.author} 
+                    className="w-12 h-12 rounded-full mr-3"
+                  />
+                  <h3 className="font-bold text-lg">{post.author}</h3>
+                </div>
+                <div className="text-gray-700 whitespace-pre-line">
+                  {post.author}
+                </div>
+              </div>
+            </div>
             
             {/* Interaction Buttons */}
-            <div className="flex flex-wrap justify-between items-center gap-4 mb-12 px-6 py-4 bg-gray-100 rounded-xl shadow-xl">
+            <div className="flex flex-wrap justify-between gap-4 mb-12 px-6 py-4 bg-gray-100 md:rounded-xl rounded-none md:shadow-xl shadow-none md:-mx-0 -mx-6">
               {/* Left Box */}
               <button 
                 onClick={handleLike}
-                className="flex items-center px-9 py-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100 transition-colors cursor-pointer"
+                className="flex justify-center items-center px-9 py-2 md:w-auto w-full rounded-full bg-white border border-gray-300 hover:bg-gray-100 transition-colors cursor-pointer"
               >
                 <Smile className={cn(`h-5 w-5 mr-2 ${hasLiked ? 'text-white fill-yellow-500' : 'text-gray-700'}`)} />
                 <span>{likesCount}</span>
@@ -114,7 +131,7 @@ const ArticlePost = () => {
                 {/* CopyLink */}
                 <button 
                   onClick={handleCopyLink}
-                  className="flex items-center px-8 py-2 rounded-full bg-white hover:bg-gray-100 border border-gray-300 transition-colors cursor-pointer"
+                  className="flex items-center md:px-8 px-6 py-2 rounded-full bg-white hover:bg-gray-100 border border-gray-300 transition-colors cursor-pointer"
                 >
                   <LinkIcon className="h-5 w-5 text-gray-700 mr-2" />
                   <span>Copy link</span>
@@ -158,14 +175,14 @@ const ArticlePost = () => {
                 Comment
               </h2>
               {/* Comment Form */}
-              <div className="flex flex-col items-end">
+              <div className="flex flex-col md:items-end items-starts">
                 <textarea 
                   placeholder="What are your thoughts?"
                   onChange={(e) => setComment(e.target.value)}
-                  className="w-full px-4 py-3 text-gray-600 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-200 focus:outline-none resize-none"
+                  className="w-full px-4 py-3 text-gray-600 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-200 focus:outline-none resize-y"
                   rows={4}
                 />
-                <div className="flex w-50 mt-2">
+                <div className="flex md:w-50 w-30 mt-2">
                   <Button 
                     text="Send" 
                     style="black" 
@@ -195,8 +212,8 @@ const ArticlePost = () => {
           </div>
           
           {/* Right Box */}
-          <div className="md:w-1/3 ">
-            {/* Author Section */}
+          <div className="md:w-1/3 md:block hidden">
+            {/* Author Section Desktop*/}
             <div className="sticky top-36 bg-gray-50 rounded-xl p-6">
               <div className="flex items-center mb-4">
                 <img 

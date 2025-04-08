@@ -17,9 +17,9 @@ export const ArticleProvider = ({ children }) => {
   }, [category, page]);
 
   const formatDate = (date) => {
-    return new Date(date).toLocaleString("th-TH", {
+    return new Date(date).toLocaleString("en-GB", {
       year: "numeric",
-      month: "2-digit",
+      month: "long",
       day: "2-digit",
       hour: "2-digit",
       minute: "2-digit",
