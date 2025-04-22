@@ -1,16 +1,16 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import AuthLayout from '@/components/AuthLayout';
+import LoginForm from '@/components/LoginForm';
 
-const AuthPage = () => {
+const LoginPage = () => {
   return (
         <>
             <div className="min-h-screen flex flex-col cabin-font">
                 <Navbar />
-                <AuthLayout/>
+                <LoginForm/>
                 <Footer />
             </div>  
         </>
   )};
 
-export default AuthPage;
+export default LoginPage;
