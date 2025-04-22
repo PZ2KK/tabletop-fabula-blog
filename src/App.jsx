@@ -9,7 +9,6 @@ import LoginPage from './pages/LoginPage';
 import {Toaster} from 'sonner';
 import { ArticleProvider } from './context/ArticleContext';
 
-
 function App() {
   return (
     <>
