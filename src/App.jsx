@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import NoMatchPage from './pages/NoMatchPage';
 import PostPage from './pages/PostPage';
-import SignupPage from './pages/signUpPage';
+import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import {Toaster} from 'sonner';
 import { ArticleProvider } from './context/ArticleContext';
