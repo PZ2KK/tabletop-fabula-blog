@@ -6,7 +6,7 @@ const AdminPage = () => {
         <>
             <div className="min-h-screen flex flex-row cabin-font">
                 <AdminPanel />
-                <div className="">
+                <div className="flex-grow">
                     <Outlet />
                 </div>
             </div>
