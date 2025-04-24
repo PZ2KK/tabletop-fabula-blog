@@ -2,69 +2,84 @@ import { SlNotebook, SlFolder } from "react-icons/sl";
 import { IoPerson } from "react-icons/io5";
 import { IoNotifications } from "react-icons/io5";
 import { PiPassword } from "react-icons/pi";
-import { FiExternalLink } from "react-icons/fi";
+import { GoLinkExternal } from "react-icons/go";
 import { CiLogout } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 const AdminPanel = () => {
   const menu = [
-    { label: 'Article management', icon: <SlNotebook />, active: true },
-    { label: 'Category management', icon: <SlFolder />, active: false},
-    { label: 'Profile', icon: <IoPerson />, active: false },
-    { label: 'Notification', icon: <IoNotifications />, active: false },
-    { label: 'Reset password', icon: <PiPassword />, active: false },
+    { label: 'Article management', icon: <SlNotebook />, path: 'article'},
+    { label: 'Category management', icon: <SlFolder />, path: 'category'},
+    { label: 'Profile', icon: <IoPerson />, path: 'profile'},
+    { label: 'Notification', icon: <IoNotifications />, path: 'notification'},
+    { label: 'Reset password', icon: <PiPassword />, path: 'resetpassword'},
   ];
 
-const navigate = useNavigate();
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate('/login')
+  };
 
 return (
   <div className="flex bg-[#EFEEEB]">
       <div className="w-64 flex flex-col">
         {/* logo */}
         <div className="px-8 py-16">
-          <a href="#" className="scroll-smooth" rel="noopener noreferrer">
             <img
-              className="md:w-[100%] w-[100%]"
+              className=" pb-6"
               src='/images/logos/logo.png'
+              alt="logo"
             />
-          </a>
           <p className="text-[#F2B68C] font-semibold text-[20px]">Admin panel</p>
         </div>
 
         {/* Menu */}
-        <ul className="">
+        <div className="space-y-1">
           {menu.map((item, index) => (
-            <li key={index}>
-              <a
-                href="#"
-                className={`flex items-center px-4 py-4 ${
-                  item.active ? 'bg-[#DAD6D1] text-gray-800 font-semibold' : 'hover:bg-[#DAD6D1] text-gray-600'
-                }`}
-              >
-                <span className="mr-2 inline">{item.icon}</span>
-                {item.label}
-              </a>
-            </li>
+            <div
+              key={index}
+              onClick={() => {
+                setActiveIndex(index)
+                navigate(`/admin/${item.path}`)
+              }}
+              className={cn(
+                'flex items-center px-4 py-4 cursor-pointer transition-color duration-300 ease-in-out',
+                {
+                  'bg-[#DAD6D1] text-gray-800 font-semibold pl-9': index === activeIndex,
+                  'hover:bg-[#DAD6D1] text-gray-600': index !== activeIndex,
+                }
+              )}
+            >
+              <span className="mr-2 inline">{item.icon}</span>
+              {item.label}
+            </div>
           ))}
-        </ul>
+        </div>
         
-        {/* Logout */}
-        <div className="mt-auto ">
-            <ul className="">
-              <li>
-                <a href="/" className="flex items-center px-4 py-4 hover:bg-[#DAD6D1] text-gray-600">
-                  <FiExternalLink/>
-                  <span className="ml-2"> hh. website </span>
-                </a>
-              </li>
-              <hr className="border-gray-300" />
-              <li>
-                <a href="/logout" className="flex items-center px-4 py-4 hover:bg-[#DAD6D1] text-gray-600">
-                  <CiLogout />
-                  <span className="ml-2"> Log out </span>
-                </a>
-              </li>
-            </ul>
+        {/* Bottom Menu */}
+        <div className="mt-auto pb-2">
+          <button
+            onClick={() => navigate('/')}
+            className="flex items-center w-full text-left px-4 py-4 hover:bg-[#DAD6D1] text-gray-600 cursor-pointer"
+          >
+            <GoLinkExternal />
+            <span className="ml-2">Return to Blog</span>
+          </button>
+
+          <hr className="border-gray-300" />
+
+          <button
+            onClick={handleLogout}
+            className="flex items-center w-full text-left px-4 py-4 hover:bg-[#DAD6D1] text-gray-600 cursor-pointer"
+          >
+            <CiLogout />
+            <span className="ml-2">Log out</span>
+          </button>
         </div>
       </div>
   </div>

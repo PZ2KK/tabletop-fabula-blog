@@ -8,6 +8,10 @@ import PostPage from './pages/PostPage';
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import AdminPage from './pages/AdminPage';
+import CategoryManagement from './components/admin/CategoryManagement';
+import NotificationManagement from './components/admin/NotificationManagement';
+import ProfileManagement from './components/admin/ProfileManagement';
+import PasswordManagement from './components/admin/ResetPassword';
 import {Toaster} from 'sonner';
 import { ArticleProvider } from './context/ArticleContext';
 
@@ -27,7 +31,17 @@ function App() {
             <Route path="/post/:postId" element={<PostPage/>}/>
             <Route path="/signup" element={<SignupPage/>}/>
             <Route path="/login" element={<LoginPage/>}/>
-            <Route path="/admin" element={<AdminPage/>}/>
+
+            {/* Admin Path */}
+            <Route path="/admin" element={<AdminPage/>}>
+              {/* <Route index element={<ArticleManagement />} /> */}
+              {/* <Route path="article" element={<ArticleManagement />} />*/}
+              <Route path="category" element={<CategoryManagement />} />
+              <Route path="notification" element={<NotificationManagement />} />
+              <Route path="profile" element={<ProfileManagement />} />
+              <Route path="resetpassword" element={<PasswordManagement />} />
+            </Route>
+
         </Routes>
       </Router>
       </ArticleProvider>
