@@ -48,9 +48,8 @@ const Pagination = ({ page, pageLimit, setPage }) => {
           {pageLimit}
         </button>
       )} */}
-
-      <PaginationButton text={"Next"} onClick={() => setPage(page + 1)} disabled={page === pageLimit} className={"md:grid hidden"} />
-      <PaginationButton text={"Last"} onClick={() => setPage(pageLimit)} disabled={page === pageLimit} />
+      <PaginationButton text={"Next"} onClick={() => setPage(page + 1)} disabled={page === pageLimit || pageLimit === 0} className={"md:grid hidden"} />
+      <PaginationButton text={"Last"} onClick={() => setPage(pageLimit)} disabled={page === pageLimit || pageLimit === 0} />
     </div>
   );
 };

@@ -9,23 +9,13 @@ import LoadingWrapper from "./ui/LoadingWrapper";
 import Pagination from "./ui/Pagination";
 
 const ArticleSection = () => {
-  const { posts, category, setCategory, page, setPage, pageLimit } = useArticles();
+  const { posts, category, setCategory, page, setPage, pageLimit, keyword, setKeyword } = useArticles();
   const categories = ["Highlight", "Book", "Inspiration", "General"];
   const articleRef = useRef(null);
-
+  
   useEffect(() => {
     articleRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
   }, [page]);
-
-  const PaginationButton = ({ onClick, disabled, text }) => (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      className="py-2 px-4 text-white bg-black hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-black rounded-md cursor-pointer"
-    >
-      {text}
-    </button>
-  );
 
   return (
     <div className="md:mx-0 md:px-[140px] md:py-20 p-10 pt-0 w-full mx-auto">
@@ -63,18 +53,32 @@ const ArticleSection = () => {
 
         {/* Search Bar */}
         <div className="relative w-full md:w-64">
-          <Input placeholder="Search" className="bg-white px-4 focus:outline-none focus:ring-0" />
+        <Input
+            placeholder="Search"
+            value={keyword}
+            onChange={(e) => {
+              setKeyword(e.target.value);
+              setPage(1);
+            }}
+            className="bg-white px-4 focus:outline-none focus:ring-0"
+          />
           <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
         </div>
       </div>
 
       {/* Articles */}
       <LoadingWrapper>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-          {posts.map((post) => (
-            <ArticleCard key={post.id} {...post}/>
-          ))}
-        </div>
+        {posts.length === 0 ? (
+          <p className="text-center text-xl text-gray-500 my-20">
+            There is nothing match your keyword or category. Please try again.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            {posts.map((post) => (
+              <ArticleCard key={post.id} {...post} />
+            ))}
+          </div>
+        )}
       </LoadingWrapper>
 
       {/* Pagination */}

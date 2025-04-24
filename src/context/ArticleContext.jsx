@@ -8,13 +8,22 @@ export const ArticleProvider = ({ children }) => {
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
   const [category, setCategory] = useState("Highlight");
+  const [keyword, setKeyword] = useState("");
+  const [debouncedKeyword, setDebouncedKeyword] = useState("");
   const [page, setPage] = useState(1);
   const [pageLimit, setPageLimit] = useState(1);
+
   
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedKeyword(keyword);
+    }, 700);
+    return () => clearTimeout(handler);
+  }, [keyword]);
 
   useEffect(() => {
     fetchData();
-  }, [category, page]);
+  }, [category, page, debouncedKeyword]);
 
   const formatDate = (date) => {
     return new Date(date).toLocaleString("en-GB", {
@@ -36,6 +45,7 @@ export const ArticleProvider = ({ children }) => {
           category: category === "Highlight" ? undefined : category,
           limit: 6,
           page,
+          keyword: debouncedKeyword || undefined, 
         },
       });
 
@@ -70,7 +80,7 @@ export const ArticleProvider = ({ children }) => {
   };
   
   return (
-    <ArticleContext.Provider value={{ posts, isLoading, isError, category, setCategory, page, setPage, pageLimit, fetchPostById }}>
+    <ArticleContext.Provider value={{ posts, isLoading, isError, category, setCategory, page, setPage, pageLimit, fetchPostById, keyword, setKeyword, }}>
       {children}
     </ArticleContext.Provider>
   );
