@@ -9,6 +9,7 @@ import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import AdminPage from './pages/AdminPage';
 import ArticleManagement from './components/admin/ArticleManagement';
+import CreateArticle from './components/admin/CreateArticle';
 import CategoryManagement from './components/admin/CategoryManagement';
 import NotificationManagement from './components/admin/NotificationManagement';
 import ProfileManagement from './components/admin/ProfileManagement';
@@ -37,6 +38,7 @@ function App() {
             <Route path="/admin" element={<AdminPage/>}>
               <Route index element={<ArticleManagement />} />
               <Route path="article" element={<ArticleManagement />} />
+              <Route path="createArticle" element={<CreateArticle />} />
               <Route path="category" element={<CategoryManagement />} />
               <Route path="notification" element={<NotificationManagement />} />
               <Route path="profile" element={<ProfileManagement />} />

@@ -19,6 +19,8 @@ import { Pencil, Trash2, Search } from "lucide-react";
 import { useArticles } from "@/context/ArticleContext";
 import LoadingWrapper from "../ui/LoadingWrapper";
 import Pagination from "../ui/Pagination";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ArticleTable = ({ id, title, category, status, index }) => {
   const rowStyle = index % 2 === 0 ? "" : "bg-gray-50";
@@ -46,7 +48,7 @@ const ArticleTable = ({ id, title, category, status, index }) => {
 };
 
 const ArticleManagement = () => {
-    const {
+  const {
         posts,
         category,
         setCategory,
@@ -61,6 +63,11 @@ const ArticleManagement = () => {
         isError,
     } = useArticles();
   const categories = ["Highlight", "Book", "Inspiration", "General"];
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setPage(1);
+  }, []);
 
   return (
     // Header
@@ -70,7 +77,7 @@ const ArticleManagement = () => {
             Article management
         </h1>
         <div>
-            <Button text="+ Create article" style="black"/>
+            <Button text="+ Create article" style="black" onClick={() => navigate("/admin/createArticle")}/>
         </div>
         </div>
 
@@ -105,9 +112,9 @@ const ArticleManagement = () => {
                 <SelectValue placeholder="Category" />
             </SelectTrigger>
             <SelectContent>
-                {categories.map((target) => (
-                <SelectItem key={target} value={target}>
-                    {target}
+                {categories.map((category) => (
+                <SelectItem key={category} value={category}>
+                    {category}
                 </SelectItem>
                 ))}
             </SelectContent>
@@ -116,7 +123,7 @@ const ArticleManagement = () => {
         </div>
         
         {/* Article */}
-        <LoadingWrapper isLoading={isLoading} isError={isError}>
+        <LoadingWrapper>
             <div className="border rounded-md mx-20">
             <Table>
                 <TableHeader>

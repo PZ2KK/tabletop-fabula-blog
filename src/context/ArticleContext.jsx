@@ -7,6 +7,7 @@ export const ArticleProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
+  const [status, setStatus] = useState("");
   const [category, setCategory] = useState("Highlight");
   const [keyword, setKeyword] = useState("");
   const [debouncedKeyword, setDebouncedKeyword] = useState("");
