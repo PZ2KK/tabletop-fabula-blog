@@ -26,7 +26,7 @@ const AdminPanel = () => {
   };
 
 return (
-  <div className="flex bg-[#EFEEEB]">
+  <div className="flex bg-[#EFEEEB] h-screen">
       <div className="w-64 flex flex-col">
         {/* logo */}
         <div className="px-8 py-16">
