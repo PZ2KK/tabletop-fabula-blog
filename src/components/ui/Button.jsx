@@ -6,6 +6,7 @@ const Button = ({ text, style, onClick }) => {
   const styles = {
     white:  "text-black bg-white border border-black hover:bg-gray-200",
     black: "text-white bg-black hover:bg-gray-700",
+    red: "text-white bg-red-600 hover:bg-red-400",
   }
   return (
     <button 

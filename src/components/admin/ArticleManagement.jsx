@@ -24,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 
 const ArticleTable = ({ id, title, category, status, index }) => {
   const rowStyle = index % 2 === 0 ? "" : "bg-gray-50";
+  const navigate = useNavigate()
   return (
     <TableRow className={rowStyle}>
       <TableCell>{title}</TableCell>
@@ -40,8 +41,8 @@ const ArticleTable = ({ id, title, category, status, index }) => {
         </span>
       </TableCell>
       <TableCell className="flex justify-end gap-6">
-          <Pencil className="h-4 w-4 text-gray-600 hover:text-black cursor-pointer"/>
-          <Trash2 className="h-4 w-4 text-gray-600 hover:text-black cursor-pointer"/>
+          <Pencil className="h-4 w-4 text-gray-600 hover:text-black cursor-pointer" onClick={() => navigate(`/admin/edit-article/${id}`)}/>
+          <Trash2 className="h-4 w-4 text-gray-600 hover:text-black cursor-pointer" />
       </TableCell>
     </TableRow>
   );
@@ -77,7 +78,7 @@ const ArticleManagement = () => {
             Article management
         </h1>
         <div>
-            <Button text="+ Create article" style="black" onClick={() => navigate("/admin/createArticle")}/>
+            <Button text="+ Create article" style="black" onClick={() => navigate("/admin/create-article")}/>
         </div>
         </div>
 
