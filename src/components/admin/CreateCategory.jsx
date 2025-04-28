@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Button from "@/components/ui/button";
+import Button from "../ui/Button";
 import { Input } from "@/components/ui/input";
 
 const CreateCategory = () => {
