@@ -16,12 +16,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Pencil, Trash2, Search } from "lucide-react";
+import { FaPlus } from "react-icons/fa6";
 import { useArticles } from "@/context/ArticleContext";
 import LoadingWrapper from "../ui/LoadingWrapper";
 import Pagination from "../ui/Pagination";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DeleteModal from "../ui/DeleteModal";
+
 
 const ArticleTable = ({
   id,
@@ -37,32 +39,40 @@ const ArticleTable = ({
   const navigate = useNavigate();
   return (
     <TableRow className={rowStyle}>
-      <TableCell>{title}</TableCell>
-      <TableCell>{category}</TableCell>
-      <TableCell>
-        <span
-          className={`px-2 py-1 rounded-md ${
+      <TableCell className="pl-6">{title}</TableCell>
+      <TableCell className="pl-6">{category}</TableCell>
+      <TableCell className="pl-6">
+        
+        <div
+          className={`flex items-center justify-start gap-1 px-2 py-2 rounded-md ${
             status === "Published"
-              ? "bg-green-100 text-green-600"
-              : "bg-yellow-100 text-yellow-600"
+              ? "text-green-600"
+              : "text-yellow-600"
           }`}
         >
-          {status ? status : "No Status"}
-        </span>
+          <span className={`h-1 w-1 rounded-full ${
+            status === "Published"
+              ? "bg-green-600"
+              : "bg-yellow-600"
+          }`} />
+          {status ? status : "Draft"}
+        </div>
       </TableCell>
-      <TableCell className="flex justify-end gap-6">
-        <Pencil
-          className="h-4 w-4 text-gray-600 hover:text-black cursor-pointer"
-          onClick={() => navigate(`/admin/edit-article/${id}`)}
-        />
-        <Trash2
-          className="h-4 w-4 text-gray-600 hover:text-black cursor-pointer"
-          onClick={() => {
-            setPostId(id);
-            setPostTitle(title);
-            setModalToggle(true);
-          }}
-        />
+      <TableCell className="align-middle">
+        <div className="flex items-center justify-end gap-6 pr-6">
+          <Pencil
+            className="h-4 w-4 text-gray-600 hover:text-black cursor-pointer"
+            onClick={() => navigate(`/admin/edit-article/${id}`)}
+          />
+          <Trash2
+            className="h-4 w-4 text-gray-600 hover:text-black cursor-pointer"
+            onClick={() => {
+              setPostId(id);
+              setPostTitle(title);
+              setModalToggle(true);
+            }}
+          />
+        </div>
       </TableCell>
     </TableRow>
   );
@@ -104,17 +114,22 @@ const ArticleManagement = () => {
   }, []);
 
   return (
-    // Header
     <div className="flex-col w-full h-full">
+      {/* Header */}
       <div className="flex justify-between items-center py-6 mx-20">
         <h1 className="text-2xl font-semibold text-gray-800 whitespace-nowrap ">
           Article management
         </h1>
         <div>
           <Button
-            text="+ Create article"
-            style="black"
-            onClick={() => navigate("/admin/create-article")}
+              text={<>
+                <div className="flex items-center gap-2">
+                <FaPlus /> 
+                Create article
+                </div>
+              </>}
+              style="black"
+              onClick={() => navigate("/admin/create-article")}
           />
         </div>
       </div>
@@ -172,14 +187,14 @@ const ArticleManagement = () => {
 
       {/* Article */}
       <LoadingWrapper>
-        <div className="border rounded-md mx-20">
+        <div className="border rounded-md mx-20 ">
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead>Article title</TableHead>
-                <TableHead>Category</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead></TableHead>
+              <TableRow className="shadow-md">
+                <TableHead className="pl-6">Article title</TableHead>
+                <TableHead className="pl-6">Category</TableHead>
+                <TableHead className="pl-6">Status</TableHead>
+                <TableHead className="pl-6"></TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

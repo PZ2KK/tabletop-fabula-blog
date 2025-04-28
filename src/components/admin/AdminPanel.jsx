@@ -4,8 +4,8 @@ import { IoNotifications } from "react-icons/io5";
 import { PiPassword } from "react-icons/pi";
 import { GoLinkExternal } from "react-icons/go";
 import { CiLogout } from "react-icons/ci";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 const AdminPanel = () => {
@@ -17,9 +17,17 @@ const AdminPanel = () => {
     { label: 'Reset password', icon: <PiPassword />, path: 'resetpassword'},
   ];
 
+  const navigate = useNavigate();
+  const location = useLocation();
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    const currentPath = location.pathname.split('/').pop();
+    const foundIndex = menu.findIndex(item => item.path === currentPath);
+    if (foundIndex !== -1) {
+      setActiveIndex(foundIndex);
+    }
+  }, [location.pathname]);
 
   const handleLogout = () => {
     navigate('/login')

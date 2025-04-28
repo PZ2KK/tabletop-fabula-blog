@@ -73,7 +73,7 @@ const EditArticle = () => {
     }
   };
 
-  const handleSave = async () => {
+  const handleSubmit = async (status) => {
     try {
       setLoading(true);
       const updatedPost = { ...post, date: new Date().toISOString() };
@@ -112,14 +112,6 @@ const EditArticle = () => {
             </div>;
   }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  if (!post) {
-    return <div>Post not found</div>;
-  }
-
   return (
     <div className="flex-col w-full h-full bg-white">
       {modalToggle && (
@@ -136,8 +128,8 @@ const EditArticle = () => {
         <h1 className="text-2xl font-semibold text-gray-800">Edit Article</h1>
         <div className="flex gap-4 w-[45%] pr-60">
           <Button text="Delete Article" style="red" onClick={() => setModalToggle(!modalToggle)} />
-          <Button text="Save as draft" style="white" onClick={() => handleSave('draft')} />
-          <Button text="Save" style="black" onClick={() => handleSave('published')} />
+          <Button text="Save as draft" style="white" onClick={() => handleSubmit('draft')} />
+          <Button text="Save" style="black" onClick={() => handleSubmit('published')} />
         </div>
       </div>
 

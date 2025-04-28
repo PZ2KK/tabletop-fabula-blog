@@ -12,6 +12,8 @@ import ArticleManagement from './components/admin/ArticleManagement';
 import CreateArticle from './components/admin/CreateArticle';
 import EditArticle from './components/admin/EditArticle';
 import CategoryManagement from './components/admin/CategoryManagement';
+import CreateCategory from './components/admin/CreateCategory';
+import EditCategory from './components/admin/EditCategory';
 import NotificationManagement from './components/admin/NotificationManagement';
 import ProfileManagement from './components/admin/ProfileManagement';
 import PasswordManagement from './components/admin/ResetPassword';
@@ -42,6 +44,8 @@ function App() {
               <Route path="create-article" element={<CreateArticle />} />
               <Route path="edit-article/:postId" element={<EditArticle />} />
               <Route path="category" element={<CategoryManagement />} />
+              <Route path="create-category" element={<CreateCategory />} />
+              <Route path="edit-category/:postId" element={<EditCategory />} />
               <Route path="notification" element={<NotificationManagement />} />
               <Route path="profile" element={<ProfileManagement />} />
               <Route path="resetpassword" element={<PasswordManagement />} />
