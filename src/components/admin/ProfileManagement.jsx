@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Button from '../ui/Button';
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState, useRef } from "react";
 import { CiImageOn } from "react-icons/ci";
