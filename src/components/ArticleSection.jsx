@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/Input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import ArticleCard from "./ui/ArticleCard";
 import { useArticles } from "@/context/ArticleContext";
 import LoadingWrapper from "./ui/LoadingWrapper";
