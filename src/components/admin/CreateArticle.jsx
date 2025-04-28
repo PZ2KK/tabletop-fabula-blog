@@ -3,10 +3,11 @@ import Button from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { CiImageOn } from "react-icons/ci";
 
 const CreateArticle = () => {
+  const fileInputRef = useRef(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [formData, setFormData] = useState({
     title: '',
@@ -29,9 +30,31 @@ const CreateArticle = () => {
     }));
   };
 
-   // Handle file input for imageUrl
+  // Handle file input for imageUrl
+  const handleUploadClick = () => {
+    fileInputRef.current?.click();  
+  };
+
+  // Handle file input for imageUrl
    const handleImageUrlChange = (e) => {
-   
+    const file = e.target.files[0];
+    if (file) {
+      const maxSizeInMB = 2;
+      const maxSizeInBytes = maxSizeInMB * 1024 * 1024;
+  
+      if (file.size > maxSizeInBytes) {
+        alert(`File size should not exceed ${maxSizeInMB} MB`);
+        return;
+      }
+  
+      const imageUrl = URL.createObjectURL(file);
+      setImageUrl(imageUrl);
+  
+      setFormData((prevData) => ({
+        ...prevData,
+        image: imageUrl,
+      }));
+    }
   };
 
   // Handle form submit
@@ -81,19 +104,31 @@ const CreateArticle = () => {
       <hr className="pb-6" />
 
       {/* Form */}
-      <div className="flex flex-col gap-2 mx-20 pt-24">
-        <form onSubmit={handleSubmit}>
-            {/* Upload */}
-            <div className="flex flex-col gap-4 w-1/3 pr-24 pb-4">
+      <div className="flex flex-col mx-20 pt-24">
+        <form onSubmit={(e) => e.preventDefault()}>
+            {/* Image */}
+            <div className="flex flex-col w-1/3 gap-2 pr-24 pb-4">
                 <label className="text-sm text-gray-500 font-semibold">Thumbnail image</label>
-                <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-md w-full h-48 flex items-center justify-center">
+                <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-md w-full h-48 flex items-center justify-center overflow-hidden">
+                  {imageUrl ? (
+                    <img src={imageUrl} alt="Thumbnail preview" className="object-cover w-full h-full" />
+                  ) : (
                     <div className="text-gray-400 text-3xl">
-                        <CiImageOn />
+                      <CiImageOn />
                     </div>
+                  )}
                 </div>
-                <div>
-                <Button text="Upload thumbnail image" style="white" />
+                <div className='pt-2'>
+                <Button text="Upload thumbnail image" style="white" type="button" onClick={handleUploadClick}/>
                 </div>
+
+                <input
+                  type="file"
+                  accept="image/*"
+                  ref={fileInputRef}
+                  onChange={handleImageUrlChange}
+                  style={{ display: "none" }}
+                />
             </div>
 
             {/* Category */}
@@ -141,7 +176,7 @@ const CreateArticle = () => {
 
             {/* Description */}
             <label className="text-sm text-gray-500 font-semibold">Description (max 120 letters)</label>
-            <div className="w-1/2">
+            <div className="w-1/2 pb-4">
                 <Textarea
                 name="description"
                 value={formData.description}
