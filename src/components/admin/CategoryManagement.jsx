@@ -106,11 +106,11 @@ const CategoryManagement = () => {
               text={<>
                 <div className="flex items-center gap-2">
                 <FaPlus /> 
-                Create article
+                Create category
                 </div>
               </>}
               style="black"
-              onClick={() => navigate("/admin/create-article")}
+              onClick={() => navigate("/admin/create-category")}
           />
         </div>
       </div>
