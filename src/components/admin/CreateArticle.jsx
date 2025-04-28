@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState, useRef } from "react";
 import { CiImageOn } from "react-icons/ci";
+import { cn } from '@/lib/utils';
 
 const CreateArticle = () => {
   const fileInputRef = useRef(null);
@@ -109,7 +110,14 @@ const CreateArticle = () => {
             {/* Image */}
             <div className="flex flex-col w-1/3 gap-2 pr-24 pb-4">
                 <label className="text-sm text-gray-500 font-semibold">Thumbnail image</label>
-                <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-md w-full h-48 flex items-center justify-center overflow-hidden">
+                <div
+                  className={cn(
+                    'border-gray-300 border-2 border-dashed rounded-md w-full h-48 flex items-center justify-center overflow-hidden',
+                    {
+                      'border-solid border-1 border-black ': imageUrl,
+                    }
+                  )}
+                >
                   {imageUrl ? (
                     <img src={imageUrl} alt="Thumbnail preview" className="object-cover w-full h-full" />
                   ) : (
@@ -196,7 +204,7 @@ const CreateArticle = () => {
                 onChange={handleChange}
                 placeholder="Content"
                 rows={10}
-                className="bg-white h-60"
+                className="bg-white h-100"
                 />
             </div>
           </form>

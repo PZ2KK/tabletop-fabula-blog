@@ -6,7 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CiImageOn } from "react-icons/ci";
+import { cn } from '@/lib/utils';
 import LoadingWrapper from "../ui/LoadingWrapper";
+import DeleteModal from "../ui/DeleteModal";
 
 const EditArticle = () => {
   const { postId } = useParams();
@@ -18,6 +20,7 @@ const EditArticle = () => {
   const [imageUrl, setImageUrl] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null)
+  const [modalToggle, setModalToggle] = useState(false);
 
   const categories = ["Highlight", "Book", "Inspiration", "General"];
 
@@ -95,6 +98,14 @@ const EditArticle = () => {
     }
   };
 
+  const handleDelete = async () => {
+    try {
+        alert("Deleting the post...");
+      } catch (err) {
+        setError("Error deleting the post");
+      }
+  };
+
   if (loading) {
     return <div className="flex items-center justify-center h-screen">
                 <LoadingWrapper />
@@ -111,11 +122,20 @@ const EditArticle = () => {
 
   return (
     <div className="flex-col w-full h-full bg-white">
+      {modalToggle && (
+        <DeleteModal 
+            modalToggle={modalToggle} 
+            setModalToggle={setModalToggle} 
+            handleDelete={handleDelete}
+            postId={postId} 
+            postTitle={post.title}
+        />
+      )}
       {/* Header */}
       <div className="fixed flex justify-between items-center py-6 px-20 bg-white z-10 w-full shadow-sm">
         <h1 className="text-2xl font-semibold text-gray-800">Edit Article</h1>
         <div className="flex gap-4 w-[45%] pr-60">
-          <Button text="Delete Article" style="red" onClick={() => handleDelete()} />
+          <Button text="Delete Article" style="red" onClick={() => setModalToggle(!modalToggle)} />
           <Button text="Save as draft" style="white" onClick={() => handleSave('draft')} />
           <Button text="Save" style="black" onClick={() => handleSave('published')} />
         </div>
@@ -129,7 +149,14 @@ const EditArticle = () => {
           {/* Image */}
           <div className="flex flex-col w-1/3 gap-2 pr-24 pb-4">
             <label className="text-sm text-gray-500 font-semibold">Thumbnail image</label>
-            <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-md w-full h-48 flex items-center justify-center overflow-hidden">
+            <div
+                className={cn(
+                'border-gray-300 border-2 border-dashed rounded-md w-full h-48 flex items-center justify-center overflow-hidden',
+                {
+                  'border-solid border-1 border-black ': imageUrl,
+                }
+                )}
+            >
               {imageUrl ? (
                 <img src={imageUrl} alt="Thumbnail preview" className="object-cover w-full h-full" />
               ) : (
@@ -211,7 +238,7 @@ const EditArticle = () => {
               onChange={handleChange}
               placeholder="Content"
               rows={10}
-              className="bg-white h-60"
+              className="bg-white h-100"
             />
           </div>
         </form>
