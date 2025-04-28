@@ -14,7 +14,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/components/ui/Select";
 import { Pencil, Trash2, Search } from "lucide-react";
 import { FaPlus } from "react-icons/fa6";
 import { useArticles } from "@/context/ArticleContext";
